@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=message\ localServer
+comment0.target=Envelope(Message,\ java.lang.String)
+comment0.text=Create\ the\ envelope.
+comment1.params=message
+comment1.target=Message\ escapeMessage(Message)
+comment1.text=Escape\ the\ message\ by\ doubling\ all\ periods\ at\ the\ beginning\ of\r\na\ line.
+comment2.params=
+comment2.target=java.lang.String\ toString()
+comment2.text=For\ printing\ the\ envelope.\ Only\ for\ debug.
+numComments=3

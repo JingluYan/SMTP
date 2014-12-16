@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=url
+comment0.target=HttpRequest(java.lang.String)
+comment0.text=Create\ an\ HttpRequest\ object.
+comment1.params=
+comment1.target=java.lang.String\ sendRequest()
+comment1.text=Send\ Http\ request,\ parse\ response\ and\ return\ requested\ object\ \r\n\ as\ String\ (if\ no\ error),\ \r\n\ otherwise\ return\ meaningfull\ error\ message.\ \r\nDon't\ catch\ IOExceptions.\ Just\ throw\ them\ to\ MailClient
+numComments=2

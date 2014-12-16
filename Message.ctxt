@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.params=from\ to\ subject\ text
+comment0.target=Message(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
+comment0.text=Create\ the\ message\ object\ by\ inserting\ the\ required\ headers\ from\r\nRFC\ 822\ (From,\ To,\ Date).
+comment1.params=
+comment1.target=java.lang.String\ getFrom()
+comment1.text=Two\ functions\ to\ access\ the\ sender\ and\ recipient.
+comment2.params=
+comment2.target=java.lang.String\ getTo()
+comment3.params=
+comment3.target=boolean\ isValid()
+comment3.text=Check\ whether\ the\ message\ is\ valid.\ In\ other\ words,\ check\ that\r\nboth\ sender\ and\ recipient\ contain\ only\ one\ @-sign.
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment4.text=For\ printing\ the\ message.
+numComments=5

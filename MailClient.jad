@@ -1,0 +1,224 @@
+// Decompiled by DJ v3.7.7.81 Copyright 2004 Atanas Neshkov  Date: 2011/10/10 20:22:44
+// Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
+// Decompiler options: packimports(3) 
+// Source File Name:   MailClient.java
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.net.UnknownHostException;
+
+public class MailClient extends Frame
+{
+    class QuitListener
+        implements ActionListener
+    {
+
+        public void actionPerformed(ActionEvent e)
+        {
+            System.exit(0);
+        }
+
+        final MailClient this$0;
+
+        QuitListener()
+        {
+            this$0 = MailClient.this;
+            super();
+        }
+    }
+
+    class ClearListener
+        implements ActionListener
+    {
+
+        public void actionPerformed(ActionEvent e)
+        {
+            System.out.println("Clearing fields");
+            fromField.setText("");
+            toField.setText("");
+            subjectField.setText("");
+            messageText.setText("");
+        }
+
+        final MailClient this$0;
+
+        ClearListener()
+        {
+            this$0 = MailClient.this;
+            super();
+        }
+    }
+
+    class GetListener
+        implements ActionListener
+    {
+
+        public void actionPerformed(ActionEvent e)
+        {
+            if(urlField.getText().equals(""))
+            {
+                System.out.println("Need URL!");
+                return;
+            } else
+            {
+                return;
+            }
+        }
+
+        final MailClient this$0;
+
+        GetListener()
+        {
+            this$0 = MailClient.this;
+            super();
+        }
+    }
+
+    class SendListener
+        implements ActionListener
+    {
+
+        public void actionPerformed(ActionEvent event)
+        {
+            System.out.println("Sending mail");
+            if(serverField.getText().equals(""))
+            {
+                System.out.println("Need name of local mailserver!");
+                return;
+            }
+            if(fromField.getText().equals(""))
+            {
+                System.out.println("Need sender!");
+                return;
+            }
+            if(toField.getText().equals(""))
+            {
+                System.out.println("Need recipient!");
+                return;
+            }
+            Message mailMessage = new Message(fromField.getText(), toField.getText(), subjectField.getText(), messageText.getText());
+            if(!mailMessage.isValid())
+                return;
+            Envelope envelope;
+            try
+            {
+                envelope = new Envelope(mailMessage, serverField.getText());
+            }
+            catch(UnknownHostException e)
+            {
+                return;
+            }
+            try
+            {
+                SMTPConnect connection = new SMTPConnect(envelope);
+                connection.send(envelope);
+                connection.close();
+            }
+            catch(IOException error)
+            {
+                System.out.println((new StringBuilder()).append("Sending failed: ").append(error).toString());
+                return;
+            }
+            System.out.println("Mail sent succesfully!");
+        }
+
+        final MailClient this$0;
+
+        SendListener()
+        {
+            this$0 = MailClient.this;
+            super();
+        }
+    }
+
+
+    public MailClient()
+    {
+        super("Java Mailclient");
+        btSend = new Button("Send");
+        btClear = new Button("Clear");
+        btQuit = new Button("Quit");
+        serverLabel = new Label("Local mailserver:");
+        serverField = new TextField("mail.csc.liv.ac.uk", 40);
+        fromLabel = new Label("From:");
+        fromField = new TextField("", 40);
+        toLabel = new Label("To:");
+        toField = new TextField("", 40);
+        subjectLabel = new Label("Subject:");
+        subjectField = new TextField("", 40);
+        messageLabel = new Label("Message:");
+        messageText = new TextArea(30, 80);
+        urlLabel = new Label("HTTP://");
+        urlField = new TextField("www.csc.liv.ac.uk/~gairing/test.txt", 40);
+        btGet = new Button("Get");
+        Panel serverPanel = new Panel(new BorderLayout());
+        Panel fromPanel = new Panel(new BorderLayout());
+        Panel toPanel = new Panel(new BorderLayout());
+        Panel subjectPanel = new Panel(new BorderLayout());
+        Panel messagePanel = new Panel(new BorderLayout());
+        serverPanel.add(serverLabel, "West");
+        serverPanel.add(serverField, "Center");
+        fromPanel.add(fromLabel, "West");
+        fromPanel.add(fromField, "Center");
+        toPanel.add(toLabel, "West");
+        toPanel.add(toField, "Center");
+        subjectPanel.add(subjectLabel, "West");
+        subjectPanel.add(subjectField, "Center");
+        messagePanel.add(messageLabel, "North");
+        messagePanel.add(messageText, "Center");
+        Panel fieldPanel = new Panel(new GridLayout(0, 1));
+        fieldPanel.add(serverPanel);
+        fieldPanel.add(fromPanel);
+        fieldPanel.add(toPanel);
+        fieldPanel.add(subjectPanel);
+        Panel urlPanel = new Panel(new BorderLayout());
+        urlPanel.add(urlLabel, "West");
+        urlPanel.add(urlField, "Center");
+        urlPanel.add(btGet, "East");
+        fieldPanel.add(urlPanel);
+        btGet.addActionListener(new GetListener());
+        Panel buttonPanel = new Panel(new GridLayout(1, 0));
+        btSend.addActionListener(new SendListener());
+        btClear.addActionListener(new ClearListener());
+        btQuit.addActionListener(new QuitListener());
+        buttonPanel.add(btSend);
+        buttonPanel.add(btClear);
+        buttonPanel.add(btQuit);
+        add(fieldPanel, "North");
+        add(messagePanel, "Center");
+        add(buttonPanel, "South");
+        pack();
+        show();
+    }
+
+    public static void main(String argv[])
+    {
+        new MailClient();
+    }
+
+    private Button btSend;
+    private Button btClear;
+    private Button btQuit;
+    private Label serverLabel;
+    private TextField serverField;
+    private Label fromLabel;
+    private TextField fromField;
+    private Label toLabel;
+    private TextField toField;
+    private Label subjectLabel;
+    private TextField subjectField;
+    private Label messageLabel;
+    private TextArea messageText;
+    private Label urlLabel;
+    private TextField urlField;
+    private Button btGet;
+
+
+
+
+
+
+}

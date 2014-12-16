@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=envelope
+comment0.target=SMTPConnect(Envelope)
+comment0.text=Create\ an\ SMTPConnect\ object.\ Create\ the\ socket\ and\ the\ \r\nassociated\ streams.\ Initialize\ SMTP\ connection.
+comment1.params=envelope
+comment1.target=void\ send(Envelope)
+comment1.text=Send\ the\ message.\ Write\ the\ correct\ SMTP-commands\ in\ the\r\n\ \ \ \ correct\ order.\ No\ checking\ for\ errors,\ just\ throw\ them\ to\ the\r\ncaller.
+comment2.params=
+comment2.target=void\ close()
+comment2.text=Close\ the\ connection.\ First,\ terminate\ on\ SMTP\ level,\ then\r\nclose\ the\ socket.
+comment3.params=command\ rc
+comment3.target=void\ sendCommand(java.lang.String,\ int)
+comment3.text=Send\ an\ SMTP\ command\ to\ the\ server.\ Check\ that\ the\ reply\ code\ is\r\nwhat\ is\ is\ supposed\ to\ be\ according\ to\ RFC\ 821.
+comment4.params=reply
+comment4.target=int\ parseReply(java.lang.String)
+comment4.text=Parse\ the\ reply\ line\ from\ the\ server.\ Returns\ the\ reply\ code.
+comment5.params=
+comment5.target=void\ finalize()
+comment5.text=Destructor.\ Closes\ the\ connection\ if\ something\ bad\ happens.
+numComments=6
